@@ -84,71 +84,73 @@ class Vampire {
   3. check the ancestor who is above person a on the same level as person b share a common grandparent again and again until the root is hit 
     - root node is terminator for a recursive case we do in here to do that 
   */
+  
+  // TODO
+  // closestCommonAncestor(vampire) {
 
-  closestCommonAncestor(vampire) {
-
-    // Handle first edge case for if a great-grandchild is shares an edge from a grandparent 
-    if (this.creator === vampire) {
-      return vampire;
-    }
+  //   // Handle first edge case for if a great-grandchild is shares an edge from a grandparent 
+  //   if (this.creator === vampire) {
+  //     return vampire;
+  //   }
     
-    let commonAncestor;
-    const vampire1 = {vampire: this, numofAncestors: 0};
-    const vampire2 = {vampire: vampire, numofAncestors: 0}
+  //   let commonAncestor;
+  //   const vampire1 = {vampire: this, numofAncestors: 0};
+  //   const vampire2 = {vampire: vampire, numofAncestors: 0}
 
-    vampire1.numofAncestors = this.numberOfVampiresFromOriginal;
-    vampire2.numofAncestors = vampire.numberOfVampiresFromOriginal;
+  //   vampire1.numofAncestors = this.numberOfVampiresFromOriginal;
+  //   vampire2.numofAncestors = vampire.numberOfVampiresFromOriginal;
 
-    console.log(vampire1.numofAncestors);
-    console.log(vampire2.numofAncestors);
+  //   console.log(vampire1.numofAncestors);
+  //   console.log(vampire2.numofAncestors);
     
-    // Compare the level that person a is on from the original root node vs the level person b is on from the original root node
-    // if nodes a and b are not on the same level relative to the root node, keep climbing the tree from the node 'further down' below, 
-    // until it hits an ancestor in line with the second person, who is above
-    if (vampire1.numofAncestors > vampire2.numofAncestors) {
-      let generationDifference = vampire1.numofAncestors - vampire2.numofAncestors;
-      console.log(generationDifference);
-      let currentVampire = this;
+  //   // Compare the level that person a is on from the original root node vs the level person b is on from the original root node
+  //   // if nodes a and b are not on the same level relative to the root node, keep climbing the tree from the node 'further down' below, 
+  //   // until it hits an ancestor in line with the second person, who is above
+  //   if (vampire1.numofAncestors > vampire2.numofAncestors) {
+  //     let generationDifference = vampire1.numofAncestors - vampire2.numofAncestors;
+  //     console.log(generationDifference);
+  //     let currentVampire = this;
 
-      // climb up the tree (using iteration), counting nodes, until no boss is found
-      // while the current object has a boss 'edge' pointing to them 
-      while (generationDifference > 0) {
-        currentVampire = currentVampire.creator;
-        generationDifference--;
-      }
+  //     // climb up the tree (using iteration), counting nodes, until no boss is found
+  //     // while the current object has a boss 'edge' pointing to them 
+  //     while (generationDifference > 0) {
+  //       currentVampire = currentVampire.creator;
+  //       generationDifference--;
+  //     }
 
-      // call recursiveRootCheck to recursivly keep moving up the tree from the two nodes and check the common ancestor of currentVampire and vampire
-      commonAncestor = recursiveRootCheck(currentVampire, vampire);
-      return commonAncestor;
-    } else if (vampire2.numofAncestors > vampire1.numofAncestors) {
-      let generationDifference = vampire1.numofAncestors - vampire1.numofAncestors;
-      console.log(generationDifference);
-      let currentVampire = this;
+  //     // call recursiveRootCheck to recursivly keep moving up the tree from the two nodes and check the common ancestor of currentVampire and vampire
+  //     commonAncestor = recursiveRootCheck(currentVampire, vampire);
+  //     return commonAncestor;
+  //   } else if (vampire2.numofAncestors > vampire1.numofAncestors) {
+  //     let generationDifference = vampire1.numofAncestors - vampire1.numofAncestors;
+  //     console.log(generationDifference);
+  //     let currentVampire = this;
 
-      // climb up the tree (using iteration), counting nodes, until no boss is found
-      // while the current object has a boss 'edge' pointing to them 
-      while (generationDifference > 0) {
-        currentVampire = currentVampire.creator;
-        generationDifference--;
-      }
+  //     // climb up the tree (using iteration), counting nodes, until no boss is found
+  //     // while the current object has a boss 'edge' pointing to them 
+  //     while (generationDifference > 0) {
+  //       currentVampire = currentVampire.creator;
+  //       generationDifference--;
+  //     }
 
-      // 3. check the ancestor who is above person a on the same level as person b share a common grandparent again and again until the root is hit 
-      // - root node or a common parent being found between the two nodes we pass in is the terminator for a recursive case we do in here to do that
-      commonAncestor = recursiveRootCheck(currentVampire, vampire);
-      return commonAncestor;
-    }
-  }
+  //     // 3. check the ancestor who is above person a on the same level as person b share a common grandparent again and again until the root is hit 
+  //     // - root node or a common parent being found between the two nodes we pass in is the terminator for a recursive case we do in here to do that
+  //     commonAncestor = recursiveRootCheck(currentVampire, vampire);
+  //     return commonAncestor;
+  //   }
+  // }
 }
 
-const recursiveRootCheck = function(currentVampire, vampire) {
-  if (currentVampire.creator === vampire.creator) {
-    return currentVampire.creator;
-  } else {
-    currentVampire = currentVampire.creator;
-    vampire = vampire.creator;
-    recursiveRootCheck(currentVampire, vampire)
-  }
-}
+// TODO
+// const recursiveRootCheck = function(currentVampire, vampire) {
+//   if (currentVampire.creator === vampire.creator) {
+//     return currentVampire.creator;
+//   } else {
+//     currentVampire = currentVampire.creator;
+//     vampire = vampire.creator;
+//     recursiveRootCheck(currentVampire, vampire)
+//   }
+// }
 
 // create nodes representing each parent vamparie and who they infected 
 const Original = new Vampire("Original", 1800);
