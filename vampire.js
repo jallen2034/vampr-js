@@ -7,6 +7,10 @@ class Vampire {
   }
 
   /** Simple tree methods **/
+<<<<<<< HEAD
+=======
+  /** Simple tree methods **/
+>>>>>>> traversal
   // Adds the vampire as an offspring of this vampire
   // also sets the creator for the vampire it passes in as this current object
   addOffspring(vampire) {
@@ -64,6 +68,71 @@ class Vampire {
     } else {
       return false;
     }
+<<<<<<< HEAD
+=======
+  }
+
+  /** Tree traversal methods **/
+
+  // Returns the vampire object with that name, or null if no vampire exists with that name
+  vampireWithName(name) {
+
+    // base case in our recursion
+    if (this.name === name) {
+      return this;
+    }
+    
+    /* loop through offspring[] arr for each parent node
+     * call vampireWithName() recursively for each offspring in above array
+     * DFS goes down to root leaf nodes, when it hits a leaf node, they either return sarah as an object to be passed back up the tree or return null of sarah not found
+     * inside of loop of each recursive case, if each pending miltiplier recieves a sarah object, thats stored in knowsSarah, otherwise if loop finishs and no sarah found,
+       null is stored in knowsSarah
+     * if knowsSarah is an object (truthy), then returns this object back up the tree to the next pending multiply */
+    for (const offspring of this.offspring) {
+      const knowsSarah = offspring.vampireWithName(name);
+
+      if (knowsSarah) {
+        return knowsSarah;
+      }
+    }
+
+    return null;
+  }
+
+  // Returns the total number of vampires that exist
+  get totalDescendents() {
+    
+    // some kind of counter on each node to keep track of any values children below return to it 
+    let childrenCounter = 0;
+
+    // call this method on all of the current vampires's descendants and add a counter every node that is visited
+    // parent reporting how many children are below me 
+    for (const offspring of this.offspring) {
+      childrenCounter += 1;
+      const childrenCounterReturnedFromChild = offspring.totalDescendents;
+      childrenCounter += childrenCounterReturnedFromChild;
+    }
+
+    // when the base case for a node reporting its own value isnt hit, then we need to report this node to count itself to the parent node above 
+    return childrenCounter;
+  }
+
+  // Returns an array of all the vampires that were converted after 1980
+  get allMillennialVampires() {
+    let totalMillennials = [];
+    
+    // 
+    if (this.yearConverted > 1980) {
+      totalMillennials.push(this);
+    }
+
+    for (const offspring of this.offspring) {
+      const millenialOffspring = offspring.allMillennialVampires;
+      totalMillennials = totalMillennials.concat(millenialOffspring);
+    }
+
+    return totalMillennials;
+>>>>>>> traversal
   }
 
   /** Stretch **/
@@ -98,10 +167,14 @@ Ansel.addOffspring(Sarah);
 // create nodes representing grandchild vamparie and who they infected 
 const Andrew = new Vampire("Andrew", 1980);
 
+<<<<<<< HEAD
 // link nodes in our tree 
 Elgort.addOffspring(Andrew);
 
 // my test
 Andrew.closestCommonAncestor(Bart);
+=======
+
+>>>>>>> traversal
 
 module.exports = Vampire;
